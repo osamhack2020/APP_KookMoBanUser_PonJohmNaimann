@@ -1,5 +1,6 @@
 package com.ponjohmnaimann.kookmobanuser
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.volley.Request
@@ -44,6 +45,18 @@ class MainActivity : AppCompatActivity() {
                 Response.ErrorListener { error -> println("Error : $error") })
 
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
+            val qrIntent = Intent(this, QRcodeActivity::class.java)
+            startActivity(qrIntent)
+
+            /*val stringRequest = StringRequest(Request.Method.GET, createURL,
+            Response.Listener<String> {
+                response -> println(response.toString())
+            }, Response.ErrorListener { error ->
+                    println(error.toString())
+                })
+
+            Volley.newRequestQueue(this).add(stringRequest)*/
 
         }
     }
