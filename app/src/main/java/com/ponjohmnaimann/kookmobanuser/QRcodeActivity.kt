@@ -15,7 +15,9 @@ class QRcodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_rcode)
 
-        val seed ="4657489446416213"
+        val seed = intent.getStringExtra("seed")
+        val adminID = intent.getStringExtra("adminID")
+        val userID = intent.getStringExtra("userID")
 
         val time = Calendar.getInstance()
         val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
