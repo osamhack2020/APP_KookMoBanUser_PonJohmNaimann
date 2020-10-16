@@ -17,7 +17,7 @@ class QRcodeActivity : AppCompatActivity() {
 
         val seed = intent.getStringExtra("seed")
         val adminID = intent.getStringExtra("adminID")
-        val userID = intent.getStringExtra("userID")
+        val deviceID = intent.getStringExtra("deviceID")
 
         val time = Calendar.getInstance()
         val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)

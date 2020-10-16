@@ -10,10 +10,17 @@ class LoggedInMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logged_in_main)
 
+        val seed = intent.getStringExtra("seed")
+        val adminID = intent.getStringExtra("adminID")
+        val deviceID = intent.getStringExtra("deviceID")
+
         return_btn.setOnClickListener {
 
             val qrIntent = Intent(this, QRcodeActivity::class.java)
             startActivity(qrIntent)
+            qrIntent.putExtra("seed", seed)
+            qrIntent.putExtra("adminID", adminID)
+            qrIntent.putExtra("deviceID", deviceID)
 
         }
     }

@@ -30,13 +30,16 @@ class MainActivity : AppCompatActivity() {
         val loginUnit = prefs.getString("unit", null)
         val prefSeed = prefs.getString("seed", null)
         val prefAdminID = prefs.getString("adminID", null)
-        val prefUserID = prefs.getString("userID", null)
+        val prefDeviceID = prefs.getString("deviceID", null)
 
         if (loginName != null && loginRank != null && loginUnit != null
-            && prefSeed != null && prefAdminID != null && prefUserID != null) {
+            && prefSeed != null && prefAdminID != null && prefDeviceID != null) {
 
             val loggedinIntent = Intent(this, LoggedInMainActivity::class.java)
             startActivity(loggedinIntent)
+            loggedinIntent.putExtra("seed", prefSeed)
+            loggedinIntent.putExtra("adminID", prefAdminID)
+            loggedinIntent.putExtra("deviceID", prefDeviceID)
 
         }
 
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
             var seed = ""
             var adminID = ""
-            var userID = ""
+            var deviceID = ""
 
             val userJSON = JSONObject(params as Map<*, *>)
 
@@ -82,10 +85,10 @@ class MainActivity : AppCompatActivity() {
                 Response.Listener { response ->
                     seed = response.getString("seed")
                     adminID = response.getString("adminID")
-                    userID = response.getString("deviceID")
+                    deviceID = response.getString("deviceID")
                     prefs.setString("seed", seed)
                     prefs.setString("adminID", adminID)
-                    prefs.setString("userID", userID)
+                    prefs.setString("deviceID", deviceID)
                     prefs.setString("name", name)
                     prefs.setString("rank", rank)
                     prefs.setString("unit", unit)
@@ -104,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(qrIntent)
                 qrIntent.putExtra("seed", seed)
                 qrIntent.putExtra("adminID", adminID)
-                qrIntent.putExtra("userID", userID)
+                qrIntent.putExtra("deviceID", deviceID)
             }
 
             /*val stringRequest = StringRequest(Request.Method.GET, createURL,
