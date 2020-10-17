@@ -30,7 +30,7 @@ class SharedPreferenceData(context: Context) {
 
     var name: String?
         get () = prefs.getString(prefKeyName, "이름을 입력하세요")
-        set(value) = prefs.edit().putString(name, value).apply()
+        set(value) = prefs.edit().putString(prefKeyName, value).apply()
 
     var serviceNumber: String?
         get () = prefs.getString(prefKeyServiceNumber, "군번을 입력하세요")
