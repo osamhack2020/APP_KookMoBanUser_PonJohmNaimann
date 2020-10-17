@@ -1,4 +1,0 @@
-com/ponjohmnaimann/kookmobanuser/BuildConfig.java
- com.ponjohmnaimann.kookmobanuser.BuildConfig
-com/ponjohmnaimann/kookmobanuser/TOTP.java
- com.ponjohmnaimann.kookmobanuser.TOTP
