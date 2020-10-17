@@ -24,7 +24,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        prefs = PreferenceUtil(applicationContext)
+        val pref = this.getPreferences(0)
+        val editor = pref.edit()
+
+        val loginName = pref.getString("name", "")
+        val loginRank = pref.getString("rank", "")
+        val loginUnit = pref.getString("unit", "")
+
+        if (loginName != "" && loginRank != "" && loginUnit != "") {
+
+            val loggedinIntent = Intent(this, LoggedInMainActivity::class.java)
+            startActivity(loggedinIntent)
+
+        }
+
+
+        /*prefs = PreferenceUtil(applicationContext)
         val loginName = prefs.getString("name", null)
         val loginRank = prefs.getString("rank", null)
         val loginUnit = prefs.getString("unit", null)
@@ -41,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             loggedinIntent.putExtra("adminID", prefAdminID)
             loggedinIntent.putExtra("deviceID", prefDeviceID)
 
-        }
+        }*/
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,9 +68,9 @@ class MainActivity : AppCompatActivity() {
             var successLogIn = false
 
             val name = editTextTextPersonName.text.toString()
-            val rank = editTextTextPersonRank.text.toString()
-            val unit = editTextTextPersonUnit.text.toString()
-            val signUpCode = editTextTextSignUpCode.text.toString()
+            val rank = editTextTextPersonServiceNumber.text.toString()
+            val unit = editTextTextSignUpCode.text.toString()
+            //val signUpCode = editTextTextSignUpCode.text.toString()
             //val tm = getSystemService(Context.TELEPHONY_SERVICE)
             //val serialNumber = Build.getSerial()
             //val phone = applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -67,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             params["name"] = name
             params["rank"] = rank
             params["unit"] = unit
-            params["signUpCode"] = signUpCode
+            params["signUpCode"] = "88888888"
             params["manufacturer"] = "manufacturer"
             params["phoneNumber"] = "phoneNumber"
             params["serialNumber"] = "serialNumber"
@@ -83,15 +98,23 @@ class MainActivity : AppCompatActivity() {
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.POST, createURL, userJSON,
                 Response.Listener { response ->
+                    editor.clear()
                     seed = response.getString("seed")
                     adminID = response.getString("adminID")
                     deviceID = response.getString("deviceID")
-                    prefs.setString("seed", seed)
+                    editor.putString("seed", seed)
+                    editor.putString("adminID", adminID)
+                    editor.putString("deviceID", deviceID)
+                    editor.putString("name", name)
+                    editor.putString("rank", rank)
+                    editor.putString("unit", unit)
+                    editor.apply()
+                    /*prefs.setString("seed", seed)
                     prefs.setString("adminID", adminID)
                     prefs.setString("deviceID", deviceID)
                     prefs.setString("name", name)
                     prefs.setString("rank", rank)
-                    prefs.setString("unit", unit)
+                    prefs.setString("unit", unit)*/
                     successLogIn = true
                 },
                 Response.ErrorListener {
@@ -103,11 +126,13 @@ class MainActivity : AppCompatActivity() {
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
 
             if (successLogIn) {
-                val qrIntent = Intent(this, QRcodeActivity::class.java)
-                startActivity(qrIntent)
-                qrIntent.putExtra("seed", seed)
-                qrIntent.putExtra("adminID", adminID)
-                qrIntent.putExtra("deviceID", deviceID)
+
+                val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
+                startActivity(loggedInIntent)
+                loggedInIntent.putExtra("seed", seed)
+                loggedInIntent.putExtra("adminID", adminID)
+                loggedInIntent.putExtra("deviceID", deviceID)
+
             }
 
             /*val stringRequest = StringRequest(Request.Method.GET, createURL,
