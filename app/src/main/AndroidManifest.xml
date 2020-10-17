@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+        android:name=".PrefInit" >
 
         <activity android:name=".LoggedInMainActivity"></activity>
         <activity android:name=".QRcodeActivity" />

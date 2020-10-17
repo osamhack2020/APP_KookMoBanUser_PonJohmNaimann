@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\CKIRUser\\StudioProjects\\APP_KookMoBanUser_PonJohmNaimann\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\CKIRUser\\.gradle\\caches\\transforms-2\\files-2.1\\e384bf6580860a38b194ae77aa3fbfd7\\material-1.1.0\\res\\values-small-v4\\values-small-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,128,198,270",
+                        "endColumns": "72,69,71,69",
+                        "endOffsets": "123,193,265,335"
+                    }
+                }
+            ]
+        }
+    ]
+}

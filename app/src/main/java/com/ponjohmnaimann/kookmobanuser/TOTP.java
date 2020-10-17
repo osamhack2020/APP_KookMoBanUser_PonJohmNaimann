@@ -1,11 +1,10 @@
 package com.ponjohmnaimann.kookmobanuser;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigInteger;
 import java.security.GeneralSecurityException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 public class TOTP {
     private TOTP() {}

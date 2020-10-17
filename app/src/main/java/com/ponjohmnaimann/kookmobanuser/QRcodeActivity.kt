@@ -3,6 +3,7 @@ package com.ponjohmnaimann.kookmobanuser
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -18,18 +19,14 @@ class QRcodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_rcode)
 
-        val seed = intent.getStringExtra("seed")
-        val adminID = intent.getStringExtra("adminID")
-        val deviceID = intent.getStringExtra("deviceID")
-
         val time = Calendar.getInstance()
         val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
 
-        val qrContent = TOTP.generateTOTP(seed, steps, "8", "HMacSHA512")
+        val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
         val qrParams = HashMap<String, String?>()
-        qrParams["deviceID"] = deviceID
-        qrParams["adminID"] = adminID
+        qrParams["deviceID"] = PrefInit.prefs.deviceID
+        qrParams["adminID"] = PrefInit.prefs.adminID
         qrParams["TOTP"] = qrContent
 
         val mapper = jacksonObjectMapper()
@@ -42,5 +39,6 @@ class QRcodeActivity : AppCompatActivity() {
 
         qr_image.setImageBitmap(bitmap)
 
+        Toast.makeText(this, "deviceID : PrefInit.prefs.deviceID.toString()", Toast.LENGTH_SHORT).show()
     }
 }

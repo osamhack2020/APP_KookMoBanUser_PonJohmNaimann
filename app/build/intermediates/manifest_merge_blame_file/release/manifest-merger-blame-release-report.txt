@@ -1,0 +1,113 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ponjohmnaimann.kookmobanuser"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+12-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:22:5-65
+12-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:22:22-62
+13    <uses-feature
+13-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:25:5-27:36
+14        android:name="android.hardware.camera"
+14-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:26:9-47
+15        android:required="false" />
+15-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:27:9-33
+16    <uses-feature
+16-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:28:5-30:36
+17        android:name="android.hardware.camera.front"
+17-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:29:9-53
+18        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+18-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:30:9-33
+19    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+20    <uses-feature
+20-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:33:5-35:36
+21        android:name="android.hardware.camera.autofocus"
+21-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:34:9-57
+22        android:required="false" />
+22-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:35:9-33
+23    <uses-feature
+23-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:36:5-38:36
+24        android:name="android.hardware.camera.flash"
+24-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:37:9-53
+25        android:required="false" />
+25-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:38:9-33
+26    <uses-feature
+26-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:39:5-41:36
+27        android:name="android.hardware.screen.landscape"
+27-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:40:9-57
+28        android:required="false" />
+28-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:41:9-33
+29    <uses-feature
+29-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:42:5-44:36
+30        android:name="android.hardware.wifi"
+30-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:43:9-45
+31        android:required="false" />
+31-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:44:9-33
+32
+33    <application
+33-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:7:5-26:19
+34        android:name="com.ponjohmnaimann.kookmobanuser.PrefInit"
+34-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:15:9-33
+35        android:allowBackup="true"
+35-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:8:9-35
+36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+36-->[androidx.core:core:1.2.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\c2756f8bce6aefcee335533469a6c071\core-1.2.0\AndroidManifest.xml:24:18-86
+37        android:hardwareAccelerated="true"
+37-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:14:9-43
+38        android:icon="@mipmap/ic_launcher"
+38-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:9:9-43
+39        android:label="KookMoBanUser"
+39-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:10:9-38
+40        android:roundIcon="@mipmap/ic_launcher_round"
+40-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:11:9-54
+41        android:supportsRtl="true"
+41-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:12:9-35
+42        android:theme="@style/Theme.AppCompat.NoActionBar" >
+42-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:13:9-59
+43        <activity android:name="com.ponjohmnaimann.kookmobanuser.LoggedInMainActivity" />
+43-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:17:9-67
+43-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:17:19-55
+44        <activity android:name="com.ponjohmnaimann.kookmobanuser.QRcodeActivity" />
+44-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:18:9-52
+44-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:18:19-49
+45        <activity android:name="com.ponjohmnaimann.kookmobanuser.MainActivity" >
+45-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:19:9-25:20
+45-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:19:19-47
+46            <intent-filter>
+46-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:20:13-24:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:21:17-69
+47-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:21:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:23:17-77
+49-->C:\Users\CKIRUser\StudioProjects\APP_KookMoBanUser_PonJohmNaimann\app\src\main\AndroidManifest.xml:23:27-74
+50            </intent-filter>
+51        </activity>
+52        <activity
+52-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:47:9-53:63
+53            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+53-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:48:13-74
+54            android:clearTaskOnLaunch="true"
+54-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:49:13-45
+55            android:screenOrientation="sensorLandscape"
+55-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:50:13-56
+56            android:stateNotNeeded="true"
+56-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:51:13-42
+57            android:theme="@style/zxing_CaptureTheme"
+57-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:52:13-54
+58            android:windowSoftInputMode="stateAlwaysHidden" />
+58-->[com.journeyapps:zxing-android-embedded:3.6.0] C:\Users\CKIRUser\.gradle\caches\transforms-2\files-2.1\38408db2b6d19659321d24d80d3e16f3\jetified-zxing-android-embedded-3.6.0\AndroidManifest.xml:53:13-60
+59    </application>
+60
+61</manifest>
