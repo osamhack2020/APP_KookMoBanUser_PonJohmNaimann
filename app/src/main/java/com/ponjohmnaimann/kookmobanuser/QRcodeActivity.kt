@@ -23,19 +23,21 @@ class QRcodeActivity : AppCompatActivity() {
 
         val deviceID = PrefInit.prefs.deviceID
         val adminID = PrefInit.prefs.adminID
-        val time = Calendar.getInstance()
-        val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
-        val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
-        createQRCode(deviceID, adminID, qrContent)
+        createQRCode(deviceID, adminID)
 
         Handler().postDelayed(Runnable() {
             qrCodeActivity.invalidate()
+            createQRCode(deviceID, adminID)
         }, 10000)
 
     }
 
-    fun createQRCode(deviceID : String?, adminID : String?, qrContent : String) {
+    private fun createQRCode(deviceID : String?, adminID : String?) {
+
+        val time = Calendar.getInstance()
+        val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
+        val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
         val qrParams = HashMap<String, String?>()
         qrParams["deviceID"] = deviceID
