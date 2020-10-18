@@ -39,5 +39,6 @@ class QRcodeActivity : AppCompatActivity() {
 
         qr_image.setImageBitmap(bitmap)
 
+
     }
 }
