@@ -11,11 +11,6 @@ class LoggedInMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logged_in_main)
 
-        Toast.makeText(this, "name: "+PrefInit.prefs.name.toString()
-                +"\n"+ "seed: "+PrefInit.prefs.seed.toString()
-                +"\n"+ "adminID: "+PrefInit.prefs.adminID.toString()
-                +"\n"+ "deviceID: "+PrefInit.prefs.deviceID.toString(), Toast.LENGTH_SHORT).show()
-
         return_btn.setOnClickListener {
 
             val qrIntent = Intent(this, QRcodeActivity::class.java)

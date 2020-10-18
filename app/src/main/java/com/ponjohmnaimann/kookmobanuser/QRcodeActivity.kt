@@ -39,6 +39,5 @@ class QRcodeActivity : AppCompatActivity() {
 
         qr_image.setImageBitmap(bitmap)
 
-        Toast.makeText(this, "deviceID : PrefInit.prefs.deviceID.toString()", Toast.LENGTH_SHORT).show()
     }
 }

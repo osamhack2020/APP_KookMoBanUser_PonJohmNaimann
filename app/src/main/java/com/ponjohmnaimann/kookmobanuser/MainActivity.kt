@@ -81,11 +81,7 @@ class MainActivity : AppCompatActivity() {
             if (PrefInit.prefs.successLogIn) {
                 val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                 startActivity(loggedInIntent)
-            }
-            else {
-                Toast.makeText(this, "로그인 실패" +
-                        "\n"+ "이름: " + PrefInit.prefs.name.toString() +
-                        "\n"+ "seed: " + PrefInit.prefs.seed.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
             }
 
 
