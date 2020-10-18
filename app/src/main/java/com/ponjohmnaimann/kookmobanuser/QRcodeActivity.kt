@@ -3,6 +3,7 @@ package com.ponjohmnaimann.kookmobanuser
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.zxing.BarcodeFormat
@@ -12,6 +13,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import kotlinx.android.synthetic.main.activity_q_rcode.*
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.properties.Delegates
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 class QRcodeActivity : AppCompatActivity() {
@@ -19,14 +21,25 @@ class QRcodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_rcode)
 
+        val deviceID = PrefInit.prefs.deviceID
+        val adminID = PrefInit.prefs.adminID
         val time = Calendar.getInstance()
         val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
-
         val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
+        createQRCode(deviceID, adminID, qrContent)
+
+        Handler().postDelayed(Runnable() {
+            qrCodeActivity.invalidate()
+        }, 10000)
+
+    }
+
+    fun createQRCode(deviceID : String?, adminID : String?, qrContent : String) {
+
         val qrParams = HashMap<String, String?>()
-        qrParams["deviceID"] = PrefInit.prefs.deviceID
-        qrParams["adminID"] = PrefInit.prefs.adminID
+        qrParams["deviceID"] = deviceID
+        qrParams["adminID"] = adminID
         qrParams["TOTP"] = qrContent
 
         val mapper = jacksonObjectMapper()
@@ -37,7 +50,7 @@ class QRcodeActivity : AppCompatActivity() {
         val barcodeEncoder = BarcodeEncoder()
         val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
 
-        qr_image.setImageBitmap(bitmap)
-
+        qrImage.setImageBitmap(bitmap)
+        Toast.makeText(this, qrContent, Toast.LENGTH_SHORT).show()
     }
 }
