@@ -1,18 +1,25 @@
 package com.ponjohmnaimann.kookmobanuser
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,24 +47,15 @@ class MainActivity : AppCompatActivity() {
             val name = editTextTextPersonName.text.toString()
             val serviceNumber = editTextTextPersonServiceNumber.text.toString()
             val signUpCode = editTextTextSignUpCode.text.toString()
-
-            //val tm = getSystemService(Context.TELEPHONY_SERVICE)
-            //val serialNumber = Build.getSerial()
-            //val phone = applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-            //val phoneNumber = phone.line1Number.toString()
-            //val type = "phone"
-            //val manufacturer = phone.manufacturerCode.toString()
+            val manufacturer = Build.MANUFACTURER
+            val guid = UUID.randomUUID().toString()
 
             val params = HashMap<String, String>()
             params["name"] = name
-            params["rank"] = "rank"
-            params["unit"] = "unit"
-            params["signUpCode"] = "88888888"
-            params["manufacturer"] = "manufacturer"
-            params["phoneNumber"] = "phoneNumber"
-            params["serialNumber"] = "serialNumber"
+            params["signUpCode"] = signUpCode
+            params["manufacturer"] = manufacturer
+            params["guid"] = guid
             params["serviceNumber"] = serviceNumber
-            params["type"] = "type"
 
             val userJSON = JSONObject(params as Map<*, *>)
 

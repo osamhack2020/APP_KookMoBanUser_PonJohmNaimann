@@ -1,58 +1,55 @@
 package com.ponjohmnaimann.kookmobanuser
 
+import android.content.Context
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import kotlinx.android.synthetic.main.activity_q_rcode.*
+import kotlinx.coroutines.*
+import java.lang.Runnable
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.properties.Delegates
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 class QRcodeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_rcode)
 
         val deviceID = PrefInit.prefs.deviceID
         val adminID = PrefInit.prefs.adminID
+        val isReturnSuccess = PrefInit.prefs.returnSuccess
+        val returnCheckURL = "https://osam.riyenas.dev/api/log/find/device/$deviceID/last"
 
-        createQRCode(deviceID, adminID)
+        val context = this
+        val view = findViewById<View>(R.id.qrCodeActivity)
 
-        Handler().postDelayed(Runnable() {
-            qrCodeActivity.invalidate()
-            createQRCode(deviceID, adminID)
-        }, 10000)
+        GlobalScope.launch(Dispatchers.IO) {
+            while (isReturnSuccess != "PASS") {
+                returnSuccessCheck(context, returnCheckURL)
+                delay(10000L)
+            }
+            cancel()
+        }
+        GlobalScope.launch(Dispatchers.Main) {
+            while (isReturnSuccess != "PASS") {
+                qrCodeGenerator(context, view, adminID, deviceID)
+                delay(10000L)
+            }
+            cancel()
+        }
 
-    }
-
-    private fun createQRCode(deviceID : String?, adminID : String?) {
-
-        val time = Calendar.getInstance()
-        val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
-        val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
-
-        val qrParams = HashMap<String, String?>()
-        qrParams["deviceID"] = deviceID
-        qrParams["adminID"] = adminID
-        qrParams["TOTP"] = qrContent
-
-        val mapper = jacksonObjectMapper()
-        val jsonStr = mapper.writeValueAsString(qrParams)
-
-        val multiFormatWriter = MultiFormatWriter()
-        val bitMatrix: BitMatrix = multiFormatWriter.encode(jsonStr, BarcodeFormat.QR_CODE, 300, 300)
-        val barcodeEncoder = BarcodeEncoder()
-        val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
-
-        qrImage.setImageBitmap(bitmap)
-        Toast.makeText(this, qrContent, Toast.LENGTH_SHORT).show()
     }
 }
