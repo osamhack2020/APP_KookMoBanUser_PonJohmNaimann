@@ -1,13 +1,18 @@
 package com.ponjohmnaimann.kookmobanuser
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -40,24 +45,29 @@ class MainActivity : AppCompatActivity() {
             val name = editTextTextPersonName.text.toString()
             val serviceNumber = editTextTextPersonServiceNumber.text.toString()
             val signUpCode = editTextTextSignUpCode.text.toString()
+            val manufacturer = Build.MANUFACTURER
+            val serialNumber = Build.SERIAL
+            val phone = applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            var phoneNumber : String = ""
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+            != PackageManager.PERMISSION_GRANTED) {
 
-            //val tm = getSystemService(Context.TELEPHONY_SERVICE)
-            //val serialNumber = Build.getSerial()
-            //val phone = applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-            //val phoneNumber = phone.line1Number.toString()
-            //val type = "phone"
-            //val manufacturer = phone.manufacturerCode.toString()
+                Toast.makeText(this, "휴대폰 번호를 불러올 수 없습니다!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                phoneNumber = phone.line1Number.toString()
+            }
+
 
             val params = HashMap<String, String>()
             params["name"] = name
-            params["rank"] = "rank"
-            params["unit"] = "unit"
-            params["signUpCode"] = "88888888"
-            params["manufacturer"] = "manufacturer"
-            params["phoneNumber"] = "phoneNumber"
-            params["serialNumber"] = "serialNumber"
+            params["signUpCode"] = signUpCode
+            params["manufacturer"] = manufacturer
+            params["phoneNumber"] = phoneNumber
+            params["serialNumber"] = serialNumber
             params["serviceNumber"] = serviceNumber
-            params["type"] = "type"
 
             val userJSON = JSONObject(params as Map<*, *>)
 
@@ -81,7 +91,9 @@ class MainActivity : AppCompatActivity() {
             if (PrefInit.prefs.successLogIn) {
                 val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                 startActivity(loggedInIntent)
-                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "manufacturer: $manufacturer" + "\n" +
+                    "phoneNumber: $phoneNumber" + "\n" +
+                    "serialNumber : $serialNumber", Toast.LENGTH_SHORT).show()
             }
 
 
