@@ -21,6 +21,7 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         if (PrefInit.prefs.successLogIn) {
@@ -46,13 +47,13 @@ class MainActivity : AppCompatActivity() {
             val serviceNumber = editTextTextPersonServiceNumber.text.toString()
             val signUpCode = editTextTextSignUpCode.text.toString()
             val manufacturer = Build.MANUFACTURER
-            val serialNumber = Build.SERIAL
+            val serialNumber = Build.getSerial()
             val phone = applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             var phoneNumber : String = ""
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-            != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) !=
+                PackageManager.PERMISSION_GRANTED) {
 
                 Toast.makeText(this, "휴대폰 번호를 불러올 수 없습니다!", Toast.LENGTH_SHORT).show()
             }
