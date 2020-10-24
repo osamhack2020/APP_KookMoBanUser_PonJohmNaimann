@@ -18,4 +18,19 @@ class LoggedInMainActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onBackPressed() {
+
+        var mBackWait : Long = 0
+        if (PrefInit.prefs.successLogIn == true) {
+            if (System.currentTimeMillis() - mBackWait >= 2000) {
+                mBackWait = System.currentTimeMillis()
+                Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                finish()
+            }
+        }
+
+    }
 }
