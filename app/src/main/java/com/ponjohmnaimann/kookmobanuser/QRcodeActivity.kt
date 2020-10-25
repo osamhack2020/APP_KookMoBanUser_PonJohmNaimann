@@ -1,26 +1,10 @@
 package com.ponjohmnaimann.kookmobanuser
 
-import android.content.Context
-import android.graphics.Bitmap
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
-import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.common.BitMatrix
-import com.journeyapps.barcodescanner.BarcodeEncoder
-import kotlinx.android.synthetic.main.activity_q_rcode.*
 import kotlinx.coroutines.*
-import java.lang.Runnable
-import java.util.*
-import kotlin.collections.HashMap
 
 class QRcodeActivity : AppCompatActivity() {
 
@@ -43,6 +27,7 @@ class QRcodeActivity : AppCompatActivity() {
             }
             cancel()
         }
+
         GlobalScope.launch(Dispatchers.Main) {
             while (isReturnSuccess != "PASS") {
                 qrCodeGenerator(context, view, adminID, deviceID)

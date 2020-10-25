@@ -17,23 +17,23 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
 
     val time = Calendar.getInstance()
     val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
-    val qrContent = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
+    val tOTPValue = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
     val qrParams = HashMap<String, String?>()
     qrParams["deviceID"] = deviceID
     qrParams["adminID"] = adminID
-    qrParams["TOTP"] = qrContent
+    qrParams["TOTP"] = tOTPValue
 
     val mapper = jacksonObjectMapper()
-    val jsonStr = mapper.writeValueAsString(qrParams)
+    val qrContent = mapper.writeValueAsString(qrParams)
 
     val multiFormatWriter = MultiFormatWriter()
-    val bitMatrix: BitMatrix =
-        multiFormatWriter.encode(jsonStr, BarcodeFormat.QR_CODE, 300, 300)
+    val bitMatrix: BitMatrix = multiFormatWriter.encode(qrContent, BarcodeFormat.QR_CODE, 300, 300)
     val barcodeEncoder = BarcodeEncoder()
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
     val qrImage = view.findViewById<ImageView>(R.id.qrImage)
 
     qrImage.setImageBitmap(bitmap)
-    Toast.makeText(context, qrContent, Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, tOTPValue, Toast.LENGTH_SHORT).show()
+
 }
