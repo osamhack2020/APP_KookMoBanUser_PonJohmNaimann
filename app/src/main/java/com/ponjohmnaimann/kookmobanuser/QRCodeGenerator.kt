@@ -2,6 +2,7 @@ package com.ponjohmnaimann.kookmobanuser
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -32,6 +33,23 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
     val bitMatrix: BitMatrix = multiFormatWriter.encode(qrContent, BarcodeFormat.QR_CODE, 300, 300)
     val barcodeEncoder = BarcodeEncoder()
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
+
+    for (i in 0..bitmap.width) {
+        for (j in 0..bitmap.height) {
+
+            var red = Color.red(bitmap.getPixel(i, j))
+
+            //var green = Color.green(bitmap.getPixel(i, j))
+            //var blue = Color.blue(bitmap.getPixel(i, j))
+
+            var green = Random().nextInt(256)
+            var blue = Random().nextInt(256)
+            val rgb = Color.rgb(red, green, blue)
+
+            bitmap.setPixel(i, j, rgb)
+
+        }
+    }
 
     qrImage.setImageBitmap(bitmap)
     Toast.makeText(context, tOTPValue, Toast.LENGTH_SHORT).show()
