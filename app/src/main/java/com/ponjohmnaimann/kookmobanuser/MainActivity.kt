@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             if (PrefInit.prefs.successLogIn) {
                 val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                 startActivity(loggedInIntent)
-                Toast.makeText(this, "manufacturer: $manufacturer" + "\n" + "guid : $guid", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "deviceId : ${PrefInit.prefs.deviceID}", Toast.LENGTH_SHORT).show()
             }
 
 
