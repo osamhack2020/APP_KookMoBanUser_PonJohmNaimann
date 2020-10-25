@@ -13,6 +13,7 @@ class SharedPreferenceData(context: Context) {
     val prefKeyServiceNumber = "serviceNumber"
     val prefKeySignUpCode = "signUpCode"
     val prefKeySuccessLogIn = "successLogIn"
+    val prefKeyReturnSuccess = "returnSuccess"
 
     private val prefs : SharedPreferences = context.getSharedPreferences(prefsFileName, 0)
 
@@ -43,5 +44,9 @@ class SharedPreferenceData(context: Context) {
     var successLogIn: Boolean
         get () = prefs.getBoolean(prefKeySuccessLogIn, false)
         set(value) = prefs.edit().putBoolean(prefKeySuccessLogIn, value).apply()
+
+    var returnSuccess: String?
+        get () = prefs.getString(prefKeyReturnSuccess, "")
+        set(value) = prefs.edit().putString(prefKeyReturnSuccess, value).apply()
 
 }

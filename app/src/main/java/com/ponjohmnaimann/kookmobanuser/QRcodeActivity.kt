@@ -1,44 +1,40 @@
 package com.ponjohmnaimann.kookmobanuser
 
-import android.graphics.Bitmap
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.common.BitMatrix
-import com.journeyapps.barcodescanner.BarcodeEncoder
-import kotlinx.android.synthetic.main.activity_q_rcode.*
-import java.util.*
-import kotlin.collections.HashMap
+import android.view.View
+import kotlinx.coroutines.*
 
 class QRcodeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_rcode)
 
-        val time = Calendar.getInstance()
-        val steps = TOTP.calcSteps(time.timeInMillis / 1000, 0L, 10L)
+        val deviceID = PrefInit.prefs.deviceID
+        val adminID = PrefInit.prefs.adminID
+        val isReturnSuccess = PrefInit.prefs.returnSuccess
+        val returnCheckURL = "https://osam.riyenas.dev/api/log/find/device/$deviceID/last"
 
-        val tOTPValue = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
+        val context = this
+        val view = findViewById<View>(R.id.qrCodeActivity)
 
-        val qrParams = HashMap<String, String?>()
-        qrParams["deviceID"] = PrefInit.prefs.deviceID
-        qrParams["adminID"] = PrefInit.prefs.adminID
-        qrParams["TOTP"] = tOTPValue
+        GlobalScope.launch(Dispatchers.IO) {
+            while (isReturnSuccess != "PASS") {
+                returnSuccessCheck(context, returnCheckURL)
+                delay(10000L)
+            }
+            cancel()
+        }
 
-        val mapper = jacksonObjectMapper()
-        val qrContent = mapper.writeValueAsString(qrParams)
-
-        val multiFormatWriter = MultiFormatWriter()
-        val bitMatrix: BitMatrix = multiFormatWriter.encode(qrContent, BarcodeFormat.QR_CODE, 300, 300)
-        val barcodeEncoder = BarcodeEncoder()
-        val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
-
-        qr_image.setImageBitmap(bitmap)
-        Toast.makeText(this, "TOTP : $tOTPValue", Toast.LENGTH_SHORT).show()
+        GlobalScope.launch(Dispatchers.Main) {
+            while (isReturnSuccess != "PASS") {
+                qrCodeGenerator(context, view, adminID, deviceID)
+                delay(10000L)
+            }
+            cancel()
+        }
 
     }
 }
-

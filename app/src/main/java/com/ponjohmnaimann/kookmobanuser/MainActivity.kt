@@ -1,19 +1,10 @@
 package com.ponjohmnaimann.kookmobanuser
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.provider.Settings
-import android.telephony.TelephonyManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -82,16 +73,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(loggedInIntent)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             }
-
-
-            /*val stringRequest = StringRequest(Request.Method.GET, createURL,
-            Response.Listener<String> {
-                response -> println(response.toString())
-            }, Response.ErrorListener { error ->
-                    println(error.toString())
-                })
-
-            Volley.newRequestQueue(this).add(stringRequest)*/
 
         }
     }

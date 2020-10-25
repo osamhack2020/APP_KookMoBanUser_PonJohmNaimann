@@ -4,6 +4,7 @@
     package="com.ponjohmnaimann.kookmobanuser">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:hardwareAccelerated="true"
-        android:name=".PrefInit" >
+        android:name=".PrefInit">
 
         <activity android:name=".LoggedInMainActivity"></activity>
         <activity android:name=".QRcodeActivity" />
