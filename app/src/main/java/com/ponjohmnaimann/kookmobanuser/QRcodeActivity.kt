@@ -12,7 +12,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import kotlinx.android.synthetic.main.activity_q_rcode.*
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 class QRcodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,3 +41,4 @@ class QRcodeActivity : AppCompatActivity() {
 
     }
 }
+
