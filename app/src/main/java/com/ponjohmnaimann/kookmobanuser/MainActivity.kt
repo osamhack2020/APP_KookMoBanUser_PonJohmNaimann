@@ -64,8 +64,8 @@ class MainActivity : AppCompatActivity() {
                 Request.Method.POST, createURL, userJSON,
                 Response.Listener { response ->
                     PrefInit.prefs.seed = response.getString("seed")
-                    PrefInit.prefs.adminID = response.getString("adminId")
-                    PrefInit.prefs.deviceID = response.getString("deviceId")
+                    PrefInit.prefs.adminID = response.getLong("adminId").toString()
+                    PrefInit.prefs.deviceID = response.getLong("deviceId").toString()
                     PrefInit.prefs.successLogIn = true
                     PrefInit.prefs.name = name
                     PrefInit.prefs.serviceNumber = serviceNumber
