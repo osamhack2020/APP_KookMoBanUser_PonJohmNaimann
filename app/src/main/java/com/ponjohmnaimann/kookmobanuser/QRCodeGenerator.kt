@@ -26,12 +26,12 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
 
     val mapper = jacksonObjectMapper()
     val qrContent = mapper.writeValueAsString(qrParams)
+    val qrImage = view.findViewById<ImageView>(R.id.qrImage)
 
     val multiFormatWriter = MultiFormatWriter()
     val bitMatrix: BitMatrix = multiFormatWriter.encode(qrContent, BarcodeFormat.QR_CODE, 300, 300)
     val barcodeEncoder = BarcodeEncoder()
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
-    val qrImage = view.findViewById<ImageView>(R.id.qrImage)
 
     qrImage.setImageBitmap(bitmap)
     Toast.makeText(context, tOTPValue, Toast.LENGTH_SHORT).show()
