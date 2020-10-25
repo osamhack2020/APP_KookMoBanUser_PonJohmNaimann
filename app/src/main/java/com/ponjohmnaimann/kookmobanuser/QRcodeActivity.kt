@@ -37,7 +37,7 @@ class QRcodeActivity : AppCompatActivity() {
         val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
 
         qr_image.setImageBitmap(bitmap)
-        Toast.makeText(this, "deviceID : ${PrefInit.prefs.deviceID}\nTOTP : $tOTPValue", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "TOTP : $tOTPValue", Toast.LENGTH_SHORT).show()
 
     }
 }
