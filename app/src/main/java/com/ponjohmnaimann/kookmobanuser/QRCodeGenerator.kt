@@ -20,8 +20,8 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
     val tOTPValue = TOTP.generateTOTP(PrefInit.prefs.seed, steps, "8", "HMacSHA512")
 
     val qrParams = HashMap<String, String?>()
-    qrParams["deviceID"] = deviceID
     qrParams["adminID"] = adminID
+    qrParams["deviceID"] = deviceID
     qrParams["TOTP"] = tOTPValue
 
     val mapper = jacksonObjectMapper()
@@ -34,6 +34,5 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
 
     qrImage.setImageBitmap(bitmap)
-    Toast.makeText(context, tOTPValue, Toast.LENGTH_SHORT).show()
 
 }
