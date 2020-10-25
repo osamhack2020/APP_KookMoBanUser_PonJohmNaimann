@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             if (PrefInit.prefs.successLogIn) {
                 val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                 startActivity(loggedInIntent)
-                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "manufacturer: $manufacturer" + "\n" + "guid : $guid", Toast.LENGTH_SHORT).show()
             }
 
 
