@@ -26,7 +26,7 @@ class QRcodeActivity : AppCompatActivity() {
         backButtonPressed = false
 
         runBlocking {
-            val qrCodeJob = GlobalScope.launch(Dispatchers.Main) {
+           GlobalScope.launch(Dispatchers.Main) {
                 while (isReturnSuccess != "PASS") {
                     qrCodeGenerator(context, view, deviceID, adminID )
                     // 나중에는 delay를 줄여도 됨

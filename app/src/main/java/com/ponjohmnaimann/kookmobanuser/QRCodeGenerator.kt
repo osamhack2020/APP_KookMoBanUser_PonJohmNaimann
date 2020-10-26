@@ -11,10 +11,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -38,24 +35,23 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
     val barcodeEncoder = BarcodeEncoder()
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
 
-    GlobalScope.launch(Dispatchers.Main) {
-        for (i in 0..bitmap.width) {
-            for (j in 0..bitmap.height) {
+    runBlocking {
+        val qrEncoder = GlobalScope.launch(Dispatchers.Main) {
 
-                var red = Color.red(bitmap.getPixel(i, j))
-
-                //var green = Color.green(bitmap.getPixel(i, j))
-                //var blue = Color.blue(bitmap.getPixel(i, j))
-
-                var green = Random().nextInt(256)
-                var blue = Random().nextInt(256)
-                val rgb = Color.rgb(red, green, blue)
-
-                bitmap.setPixel(i, j, rgb)
-
+            for (i in 0..bitmap.width) {
+                for (j in 0..bitmap.height) {
+                    var red = Color.red(bitmap.getPixel(i, j))
+                    //var green = Color.green(bitmap.getPixel(i, j))
+                    //var blue = Color.blue(bitmap.getPixel(i, j))
+                    var green = Random().nextInt(256)
+                    var blue = Random().nextInt(256)
+                    val rgb = Color.rgb(red, green, blue)
+                    bitmap.setPixel(i, j, rgb)
+                }
             }
+
         }
-        cancel()
+        qrEncoder.join()
     }
 
     qrImage.setImageBitmap(bitmap)
