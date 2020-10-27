@@ -2,14 +2,19 @@ package com.ponjohmnaimann.kookmobanuser
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.ColorSpace
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.graphics.red
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import kotlinx.coroutines.*
+import java.nio.IntBuffer
 import java.util.*
 import kotlin.collections.HashMap
 

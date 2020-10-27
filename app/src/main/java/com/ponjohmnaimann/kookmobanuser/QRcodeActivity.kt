@@ -26,7 +26,8 @@ class QRcodeActivity : AppCompatActivity() {
         backButtonPressed = false
 
         runBlocking {
-            val qrCodeJob = GlobalScope.launch(Dispatchers.Main) {
+
+           val qrGenerateJob = GlobalScope.launch(Dispatchers.Main) {
                 while (isReturnSuccess != "PASS") {
                     qrCodeGenerator(context, view, deviceID, adminID )
                     // 나중에는 delay를 줄여도 됨
@@ -35,9 +36,8 @@ class QRcodeActivity : AppCompatActivity() {
                         break
                     }
                 }
-                finish()
             }
-            GlobalScope.launch(Dispatchers.IO) {
+            val returnCheckJob = GlobalScope.launch(Dispatchers.IO) {
                 while (isReturnSuccess != "PASS") {
                     returnSuccessCheck(context, view, returnCheckURL)
                     delay(10000L)
@@ -45,8 +45,11 @@ class QRcodeActivity : AppCompatActivity() {
                         break
                     }
                 }
-                finish()
             }
+
+            qrGenerateJob.join()
+            returnCheckJob.join()
+
         }
     }
 
