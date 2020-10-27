@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                 startActivity(loggedInIntent)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
             LoadingDialog(this).dismiss()

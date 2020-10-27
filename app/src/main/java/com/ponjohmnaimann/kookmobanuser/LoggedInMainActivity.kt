@@ -26,7 +26,6 @@ class LoggedInMainActivity : AppCompatActivity() {
             val timeInterval = systemTime - backbtnPressedTime
             if (timeInterval in 0..2000) {
                 moveTaskToBack(true)
-                finish()
             }
             else {
                 backbtnPressedTime = systemTime
