@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         return_btn.setOnClickListener {
 
+            LoadingDialog(this).show()
+
             val name = editTextTextPersonName.text.toString()
             val serviceNumber = editTextTextPersonServiceNumber.text.toString()
             val signUpCode = editTextTextSignUpCode.text.toString()
@@ -60,6 +62,9 @@ class MainActivity : AppCompatActivity() {
                     PrefInit.prefs.successLogIn = true
                     PrefInit.prefs.name = name
                     PrefInit.prefs.serviceNumber = serviceNumber
+                    val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
+                    startActivity(loggedInIntent)
+                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
                     Toast.makeText(this, "연결 실패", Toast.LENGTH_SHORT).show()
@@ -73,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(loggedInIntent)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             }
+
+            LoadingDialog(this).dismiss()
 
         }
     }
