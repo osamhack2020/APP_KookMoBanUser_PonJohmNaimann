@@ -38,50 +38,6 @@ fun qrCodeGenerator(context : Context, view : View, deviceID: String?, adminID: 
     val barcodeEncoder = BarcodeEncoder()
     val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
 
-    runBlocking {
-        val qrEncoder = GlobalScope.launch(Dispatchers.Main) {
-
-            var pixelsArray = IntArray(bitmap.width * bitmap.height)
-            bitmap.getPixels(pixelsArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-            for (y in 0 until pixelsArray.size) {
-                if (pixelsArray[y] != -1) {
-
-                    val red = 255
-                    val green = Random().nextInt(256)
-                    val blue = Random().nextInt(256)
-                    val newColorForBlack = Color.rgb(red, green, blue)
-                    pixelsArray[y] = newColorForBlack
-
-                }
-                else {
-
-                    val red = 0
-                    val green = Random().nextInt(256)
-                    val blue = Random().nextInt(256)
-                    val newColorForWhite = Color.rgb(red, green, blue)
-                    pixelsArray[y] = newColorForWhite
-
-                }
-            }
-
-            qrImage.setImageBitmap(bitmap)
-            /*
-            for (i in 0..bitmap.width) {
-                for (j in 0..bitmap.height) {
-                    var red = Color.red(bitmap.getPixel(i, j))
-                    //var green = Color.green(bitmap.getPixel(i, j))
-                    //var blue = Color.blue(bitmap.getPixel(i, j))
-                    var green = Random().nextInt(256)
-                    var blue = Random().nextInt(256)
-                    val rgb = Color.rgb(red, green, blue)
-                    bitmap.setPixel(i, j, rgb)
-                }
-            }*/
-
-        }
-        qrEncoder.join()
-    }
-
+    qrImage.setImageBitmap(bitmap)
 
 }
