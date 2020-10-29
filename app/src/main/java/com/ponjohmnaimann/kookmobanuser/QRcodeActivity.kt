@@ -4,7 +4,6 @@ package com.ponjohmnaimann.kookmobanuser
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import kotlinx.coroutines.*
 
@@ -27,7 +26,7 @@ class QRcodeActivity : AppCompatActivity() {
 
         runBlocking {
 
-           val qrGenerateJob = GlobalScope.launch(Dispatchers.Main) {
+            val qrGenerateJob = GlobalScope.launch(Dispatchers.Main) {
                 while (isReturnSuccess != "PASS") {
                     qrCodeGenerator(context, view, deviceID, adminID )
                     // 나중에는 delay를 줄여도 됨
