@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                     val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                     startActivity(loggedInIntent)
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    finish()
                 },
                 Response.ErrorListener {
                     Toast.makeText(this, "연결 실패", Toast.LENGTH_SHORT).show()
@@ -73,13 +74,6 @@ class MainActivity : AppCompatActivity() {
             )
 
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
-
-            if (PrefInit.prefs.successLogIn) {
-                val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
-                startActivity(loggedInIntent)
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                finish()
-            }
 
             LoadingDialog(this).dismiss()
 
