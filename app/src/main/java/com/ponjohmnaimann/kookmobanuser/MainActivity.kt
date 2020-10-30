@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                     PrefInit.prefs.successLogIn = true
                     PrefInit.prefs.name = name
                     PrefInit.prefs.serviceNumber = serviceNumber
+                    PrefInit.prefs.signUpCode = signUpCode
                     val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                     startActivity(loggedInIntent)
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()

@@ -27,7 +27,7 @@ class LoggedInMainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if (PrefInit.prefs.successLogIn == true) {
+        if (PrefInit.prefs.successLogIn) {
             val systemTime = System.currentTimeMillis()
             val timeInterval = systemTime - backPressedTime
             if (timeInterval in 0..2000) {

@@ -1,6 +1,5 @@
 package com.ponjohmnaimann.kookmobanuser
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,14 +27,16 @@ class QRcodeActivity : AppCompatActivity() {
 
             val qrGenerateJob = GlobalScope.launch(Dispatchers.Main) {
                 while (isReturnSuccess != "PASS") {
-                    qrCodeGenerator(context, view, deviceID, adminID )
+                    qrCodeGenerator(view, deviceID, adminID)
                     // 나중에는 delay를 줄여도 됨
                     delay(10000L)
                     if (backButtonPressed) {
                         break
                     }
                 }
+                finish()
             }
+            qrGenerateJob.join()
             val returnCheckJob = GlobalScope.launch(Dispatchers.IO) {
                 while (isReturnSuccess != "PASS") {
                     returnSuccessCheck(context, view, returnCheckURL)
@@ -44,9 +45,8 @@ class QRcodeActivity : AppCompatActivity() {
                         break
                     }
                 }
+                finish()
             }
-
-            qrGenerateJob.join()
             returnCheckJob.join()
 
         }
@@ -57,4 +57,5 @@ class QRcodeActivity : AppCompatActivity() {
         val logInIntent = Intent(this, LoggedInMainActivity::class.java)
         startActivity(logInIntent)
     }
+
 }
