@@ -1,5 +1,7 @@
 # 국방모바일반납 (Pon Johm Naimann-APP 파트)
 
+![Build](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/workflows/Build/badge.svg) ![LICENSE](https://img.shields.io/github/license/osamhack2020/IoT_KookMoBanUser_PonJohmNaimann)
+
 ## Introduction
 <p align="center">
 <img alt="GitHub contributors" src="https://user-images.githubusercontent.com/32615702/97505907-21b5ad80-19bd-11eb-9d03-4959b24b4375.png" width="50%">
