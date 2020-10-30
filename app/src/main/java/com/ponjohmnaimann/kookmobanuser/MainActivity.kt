@@ -9,6 +9,9 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.util.*
@@ -42,14 +45,13 @@ class MainActivity : AppCompatActivity() {
             val manufacturer = Build.MANUFACTURER
             val guid = UUID.randomUUID().toString()
 
-            val params = HashMap<String, String>()
-            params["name"] = name
-            params["signUpCode"] = signUpCode
-            params["manufacturer"] = manufacturer
-            params["guid"] = guid
-            params["serviceNumber"] = serviceNumber
-
-            val userJSON = JSONObject(params as Map<*, *>)
+            val userParams = HashMap<String, String>()
+            userParams["name"] = name
+            userParams["signUpCode"] = signUpCode
+            userParams["manufacturer"] = manufacturer
+            userParams["guid"] = guid
+            userParams["serviceNumber"] = serviceNumber
+            val userJSON = JSONObject(userParams as Map<*, *>)
 
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.POST, createURL, userJSON,
@@ -61,17 +63,27 @@ class MainActivity : AppCompatActivity() {
                     PrefInit.prefs.name = name
                     PrefInit.prefs.serviceNumber = serviceNumber
                     PrefInit.prefs.signUpCode = signUpCode
-                    val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
-                    startActivity(loggedInIntent)
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    finish()
                 },
                 Response.ErrorListener {
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
             )
-
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
+            val returnCheckRequest = JsonObjectRequest(
+                Request.Method.GET, "https://osam.riyenas.devapi/admin/find/signUpCode/${PrefInit.prefs.signUpCode}", null,
+                Response.Listener { response ->
+                    val adminName = response.getString("name")
+                    Toast.makeText(this, "관리자 : $adminName", Toast.LENGTH_SHORT).show()
+                    val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
+                    startActivity(loggedInIntent)
+                    finish()
+                },
+                Response.ErrorListener {
+                    Toast.makeText(this, "잘못된 초대 코드입니다.", Toast.LENGTH_SHORT).show()
+                }
+            )
+            Volley.newRequestQueue(this).add(returnCheckRequest)
 
             LoadingDialog(this).dismiss()
 

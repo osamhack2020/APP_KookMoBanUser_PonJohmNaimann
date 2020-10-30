@@ -25,6 +25,7 @@ class QRcodeActivity : AppCompatActivity() {
         val view = findViewById<View>(R.id.qrCodeActivity)
         backButtonPressed = false
 
+        /*
         GlobalScope.launch(Dispatchers.Main) {
             while (isReturnSuccess != "PASS") {
                 val qrImage = view.findViewById<ImageView>(R.id.qrImage)
@@ -71,8 +72,8 @@ class QRcodeActivity : AppCompatActivity() {
                     break
                 }
             }
-        }
-        /*
+        }*/
+
         GlobalScope.launch(Dispatchers.Main) {
             while (isReturnSuccess != "PASS") {
                 qrCodeGenerator(view, deviceID, adminID)
@@ -92,7 +93,7 @@ class QRcodeActivity : AppCompatActivity() {
                     break
                 }
             }
-        }*/
+        }
 
 }
 
