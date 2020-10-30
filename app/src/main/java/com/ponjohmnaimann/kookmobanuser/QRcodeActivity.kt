@@ -23,34 +23,27 @@ class QRcodeActivity : AppCompatActivity() {
         val view = findViewById<View>(R.id.qrCodeActivity)
         backButtonPressed = false
 
-        runBlocking {
-
-            val qrGenerateJob = GlobalScope.launch(Dispatchers.Main) {
-                while (isReturnSuccess != "PASS") {
-                    qrCodeGenerator(view, deviceID, adminID)
-                    // 나중에는 delay를 줄여도 됨
-                    delay(10000L)
-                    if (backButtonPressed) {
-                        break
-                    }
+        GlobalScope.launch(Dispatchers.Main) {
+            while (isReturnSuccess != "PASS") {
+                qrCodeGenerator(view, deviceID, adminID)
+                // 나중에는 delay를 줄여도 됨
+                delay(10000L)
+                if (backButtonPressed) {
+                    break
                 }
-                finish()
             }
-            qrGenerateJob.join()
-            val returnCheckJob = GlobalScope.launch(Dispatchers.IO) {
-                while (isReturnSuccess != "PASS") {
-                    returnSuccessCheck(context, view, returnCheckURL)
-                    delay(10000L)
-                    if (backButtonPressed) {
-                        break
-                    }
-                }
-                finish()
-            }
-            returnCheckJob.join()
-
         }
-    }
+        GlobalScope.launch(Dispatchers.IO) {
+            while (isReturnSuccess != "PASS") {
+                returnSuccessCheck(context, view, returnCheckURL)
+                delay(10000L)
+                if (backButtonPressed) {
+                    break
+                }
+            }
+        }
+
+}
 
     override fun onBackPressed() {
         backButtonPressed = true
