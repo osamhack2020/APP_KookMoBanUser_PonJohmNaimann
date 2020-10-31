@@ -30,7 +30,7 @@
 
 
 ## License
-라이센스의 구체적인 내용 및 써드파티 SW에 대해서는 본 리포지토리의 LICENSE 파일 및 튜토리얼 GitBook의 <a href="https://kookmoban.gitbook.io/osam/license/web">LICENSE 페이지</a>를 참조하십시오.
+라이센스의 구체적인 내용 및 써드파티 SW에 대해서는 본 리포지토리의 LICENSE 파일 및 튜토리얼 GitBook의 <a href="https://kookmoban.gitbook.io/osam/license/app">LICENSE 페이지</a>를 참조하십시오.
 * IoT
   * Code for Arduino: GPL v3
   * Code for RaspberryPi: BSD 3-Clause
