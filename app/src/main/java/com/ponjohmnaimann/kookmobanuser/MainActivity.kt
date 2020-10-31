@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
                 },
                 Response.ErrorListener {
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
-                    LoadingDialog(this).dismiss()
                 }
             )
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
@@ -81,17 +80,15 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "관리자 : $adminName", Toast.LENGTH_SHORT).show()
                         val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                         startActivity(loggedInIntent)
-                        LoadingDialog(this).dismiss()
-                        finish()
                     },
                     Response.ErrorListener {
                         Toast.makeText(this, "잘못된 초대 코드입니다.", Toast.LENGTH_SHORT).show()
-                        LoadingDialog(this).dismiss()
                     }
                 )
                 Volley.newRequestQueue(this).add(returnCheckRequest)
             }
 
+            LoadingDialog(this).dismiss()
         }
     }
 }

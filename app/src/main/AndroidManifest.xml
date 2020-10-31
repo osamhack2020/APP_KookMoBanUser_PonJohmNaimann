@@ -17,7 +17,7 @@
         android:name=".PrefInit">
 
         <activity android:name=".LoggedInMainActivity"></activity>
-        <activity android:name=".QRcodeActivity" />
+        <activity android:name=".QRcodeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
