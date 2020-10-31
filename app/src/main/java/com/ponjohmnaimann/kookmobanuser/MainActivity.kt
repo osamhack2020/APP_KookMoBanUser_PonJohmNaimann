@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "관리자 : $adminName", Toast.LENGTH_SHORT).show()
                         val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
                         startActivity(loggedInIntent)
+                        finish()
                     },
                     Response.ErrorListener {
                         Toast.makeText(this, "잘못된 초대 코드입니다.", Toast.LENGTH_SHORT).show()
