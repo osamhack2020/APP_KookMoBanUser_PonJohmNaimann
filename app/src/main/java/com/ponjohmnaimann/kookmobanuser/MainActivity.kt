@@ -63,33 +63,18 @@ class MainActivity : AppCompatActivity() {
                     PrefInit.prefs.name = name
                     PrefInit.prefs.serviceNumber = serviceNumber
                     PrefInit.prefs.signUpCode = signUpCode
+                    val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
+                    startActivity(loggedInIntent)
+                    LoadingDialog(this).dismiss()
+                    finish()
                 },
                 Response.ErrorListener {
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                    LoadingDialog(this).dismiss()
                 }
             )
             VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
 
-            if (PrefInit.prefs.successLogIn) {
-                val returnCheckRequest = JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://osam.riyenas.devapi/admin/find/signUpCode/${PrefInit.prefs.signUpCode}",
-                    null,
-                    Response.Listener { response ->
-                        val adminName = response.getString("name")
-                        Toast.makeText(this, "관리자 : $adminName", Toast.LENGTH_SHORT).show()
-                        val loggedInIntent = Intent(this, LoggedInMainActivity::class.java)
-                        startActivity(loggedInIntent)
-                        finish()
-                    },
-                    Response.ErrorListener {
-                        Toast.makeText(this, "잘못된 초대 코드입니다.", Toast.LENGTH_SHORT).show()
-                    }
-                )
-                Volley.newRequestQueue(this).add(returnCheckRequest)
-            }
-
-            LoadingDialog(this).dismiss()
         }
     }
 }
