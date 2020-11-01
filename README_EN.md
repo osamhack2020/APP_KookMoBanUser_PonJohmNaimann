@@ -1,6 +1,8 @@
+[![English](https://img.shields.io/badge/-English-blue.svg?style=flat)](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/blob/master/README_EN.md) [![한국어](https://img.shields.io/badge/-한국어-red.svg?style=flat)](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/blob/master/README.md)
+
 # KookMoBan (Pon Johm Naimann-App part)
 
-![Build](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/workflows/Build/badge.svg) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/osamhack2020/APP_KookMoBanUser_PonJohmNaimann) ![LICENSE](https://img.shields.io/github/license/osamhack2020/APP_KookMoBanUser_PonJohmNaimann)
+[![Build](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/workflows/Build/badge.svg)](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/actions) [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/osamhack2020/APP_KookMoBanUser_PonJohmNaimann)](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/releases) [![LICENSE](https://img.shields.io/github/license/osamhack2020/APP_KookMoBanUser_PonJohmNaimann)](https://github.com/osamhack2020/APP_KookMoBanUser_PonJohmNaimann/blob/master/LICENSE)
 
 ## Introduction
 <p align="center">
