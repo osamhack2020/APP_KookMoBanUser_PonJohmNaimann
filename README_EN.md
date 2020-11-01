@@ -30,7 +30,7 @@ Since OSAM(Open Source Academy for Military) collective education is held **unta
 
 
 ## License
-Refer to the GitBook <a href="https://kookmoban.gitbook.io/osam/license/app">LICENSE page</a> for the details of the licenses and the third-party SWs
+Refer to the GitBook <a href="https://kookmoban.gitbook.io/osam/license/app">LICENSE page</a> for the details of the license and the third-party SWs
 
 * IoT
   * Code for Arduino: GPL v3
